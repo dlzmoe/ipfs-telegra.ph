@@ -592,7 +592,7 @@ function getFigureValueByUrl(url) {
     let anchor = document.createElement('a');
     anchor.href = url;
     if (anchor.pathname.match(/\.(jpe?g|png|webp|jfif|gif|mp4)$/i)) {
-      if (match[1] == 'mp4') {
+      if (match[1] == 'mp4' || match[1] == 'webm') {
         return {video: url};
       }
       return {image: url};
@@ -1204,7 +1204,7 @@ function checkFigureBlots(range) {
   }
 }
 function updatePhoto(file, callback) {
-  if (file.type == 'image/jpg' || file.type == 'image/jpeg' || file.type == 'image/webp'|| file.type == 'image/gif' || file.type == 'video/mp4') {
+  if (file.type == 'image/jpg' || file.type == 'image/jpeg' || file.type == 'image/webp'|| file.type == 'image/gif' || file.type == 'video/mp4'|| file.type == 'video/webm') {
     const formData = new FormData();
 			formData.append('file', file);
 			let api = '//'+window.api_host+'/api/v0/add';
@@ -1773,7 +1773,7 @@ $image_button.click(function() {
   if (fileInput == null) {
     fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('accept', 'image/gif, image/jpeg,image/webp, image/jfif,image/jpg, image/png, video/mp4');
+    fileInput.setAttribute('accept', 'image/gif, image/jpeg,image/webp, image/jfif,image/jpg, image/png, video/mp4, video/webm');
     fileInput.classList.add('ql-image');
     fileInput.addEventListener('change', () => {
       if (fileInput.files != null && fileInput.files[0] != null) {
@@ -1781,7 +1781,7 @@ $image_button.click(function() {
         updatePhoto(file, (res) => {
           console.log(res)
           let figure_value = {image: "/ipfs/" +res.Hash + "?filename=" + encodeURI(res.Name)};
-          if(res.Name.indexOf(".mp4") > 0 ){
+          if(res.Name.indexOf(".mp4") > 0  || res.Name.indexOf(".webm") > 0 ){
             figure_value = {video: "/ipfs/" +res.Hash + "?filename=" + encodeURI(res.Name)};
           }
             if (figure_value) {
