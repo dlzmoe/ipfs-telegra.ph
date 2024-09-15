@@ -333,6 +333,7 @@ class FigureBlot extends BlockEmbed {
 
   appendImgNode(src) {
     let image = document.createElement('img');
+    image.loading="lazy"
     image.setAttribute('src', this.sanitize(src));
     this.domWrapper.appendChild(image);
     return image;
