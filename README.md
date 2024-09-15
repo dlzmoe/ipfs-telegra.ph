@@ -21,6 +21,12 @@ ui克隆来自 [Telegra.ph](http://telegra.ph)
 
 默认使用 localhost:5001 ，通过页面 location.hash 传递域名可以覆盖整个配置，例如 api.abc.com ,将会调用 api.abc.com/api/v0/add 上传数据。
 
+# 环境变量
+
+window.api_host 提交到ipfs的接口，可以只实现 /api/v0/add 
+
+window.ipfs_gateway 发布成功后默认跳转的ipfs网关
+
 # 样例
 
 cid：QmTCrcy5gE85cwqQf2UdcYpjMb7PrWKqBBcAuHoCwcGXZ6
