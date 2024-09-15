@@ -31,6 +31,15 @@ let Parchment  = Quill.import('parchment');
 let Delta      = Quill.import('delta');
 let Keyboard   = Quill.import('modules/keyboard');
 
+var gateways = ['https://ipfs.blockframe.io','https://ipfs.crossbell.io','https://4everland.io','https://polygon.stampsdaq.com','https://ipfs.supremelegend.io','https://ipfs.decentralized-content.com','https://gateway.pinata.cloud','https://eth.sucks','https://hardbin.com','https://gw.ipfs-lens.dev','https://gateway.v2ex.pro','https://gateway.tar.tn'];
+function seeding(res){
+    for(var i0 = 0; i0 < gateways.length; i0++)
+    {
+        let img = new Image;
+        img.src =  gateways[i0]+ '/ipfs/'+res.Hash  + "?filename=" + encodeURI(res.Name);
+    }
+}
+
 class LinkBlot extends Inline {
   static create(value) {
     let domNode = super.create(value);
@@ -1195,30 +1204,31 @@ function checkFigureBlots(range) {
   }
 }
 function updatePhoto(file, callback) {
-  if (file.type == 'image/jpg' || file.type == 'image/jpeg') {
-    return loadImage(file, (canvas) => {
-      if (canvas.type === 'error') {
-        callback(file);
-      } else {
-        if (canvas.toBlob) {
-          canvas.toBlob(function(file) {
-            callback(file);
-          }, file.type);
-        } else {
-          var dataurl = canvas.toDataURL(file.type);
-          var file_data = {
-            type: file.type,
-            base64_data: dataurl.split(',')[1]
-          };
-          callback(uploadDataToBlob(file_data));
-        }
-      }
-    }, {
-      canvas: true,
-      orientation: true
-    });
+  if (file.type == 'image/jpg' || file.type == 'image/jpeg' || file.type == 'image/webp'|| file.type == 'image/gif' || file.type == 'video/mp4') {
+    const formData = new FormData();
+			formData.append('file', file);
+			let api = '//'+window.api_host+'/api/v0/add';
+			$.ajax({
+				url: api,
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function(res) {
+					if (res.Hash) {
+						setTimeout(seeding(res),1)
+						setTimeout(callback(res),3000)
+            // return callback(res)
+					} else {
+						console.error('上传失败');
+					}
+				},
+				error: function() {
+					console.error('请求失败');
+				}
+			});
+
   }
-  callback(file);
 }
 function uploadDataToBlob(file_data) {
   var binary = atob(file_data.base64_data);
@@ -1353,9 +1363,8 @@ function savePage() {
     if (!err && datahash) {
       draftClear();
       $tl_article.addClass('tl_article_editable');
-      setTimeout(function(){
-        location = window.ipfs_gateway+'/'+datahash+'/'
-      }, 50)
+      window.open(window.ipfs_gateway + '/ipfs/'+datahash+'/', "_blank");
+
     }
 
   })
@@ -1769,13 +1778,12 @@ $image_button.click(function() {
     fileInput.addEventListener('change', () => {
       if (fileInput.files != null && fileInput.files[0] != null) {
         var file = fileInput.files[0];
-        updatePhoto(file, (file) => {
-          if (quill.fileSizeLimit && file.size > quill.fileSizeLimit) {
-            return quill.fileSizeLimitCallback && quill.fileSizeLimitCallback();
+        updatePhoto(file, (res) => {
+          console.log(res)
+          let figure_value = {image: "/ipfs/" +res.Hash + "?filename=" + encodeURI(res.Name)};
+          if(res.Name.indexOf(".mp4") > 0 ){
+            figure_value = {video: "/ipfs/" +res.Hash + "?filename=" + encodeURI(res.Name)};
           }
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            let figure_value = getFigureValueByUrl(e.target.result);
             if (figure_value) {
               let range = quill.getSelection(true);
               quill.updateContents(new Delta()
@@ -1788,8 +1796,6 @@ $image_button.click(function() {
             }
             fileInput.value = '';
             fileInput.setAttribute('data-status', 'ready');
-          };
-          reader.readAsDataURL(file);
         });
       }
     });

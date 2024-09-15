@@ -1,31 +1,35 @@
 
 # ⚛ IPFS telegra.ph clone
 
-Minimalist publishing tool for post data to IPFS network.
-UI cloned from [Telegra.ph](http://telegra.ph)
+用于将数据发布到 IPFS 网络的极简发布工具。
+ui克隆来自 [Telegra.ph](http://telegra.ph)
 
-## Demo ([click](https://ipfs.io/ipfs/QmbvveWddPW9ogjhPfByJybDAeE42eHna6a8bf6Qk2SF9B))
-IPFS hash:QmbvveWddPW9ogjhPfByJybDAeE42eHna6a8bf6Qk2SF9B
+在输入文章标题和作者姓名之后，用户即可随意创作。我们发布文章之后，就能够获得这篇文章的独立网址。我们只需要将上面获得的文章链接发送给好友，就能够在浏览器打开文章来阅读。
 
-links to site: 
- - [on cloudflare ipfs gateway](https://cloudflare-ipfs.com/ipfs/QmbvveWddPW9ogjhPfByJybDAeE42eHna6a8bf6Qk2SF9B/)
- - [on ipfs.io gateway](https://ipfs.io/ipfs/QmbvveWddPW9ogjhPfByJybDAeE42eHna6a8bf6Qk2SF9B)
+# 特点
+* 操作简洁
+* 页面干净
+* 无需登陆
+* 支持图片、gif、mp4即时插入并预览
+* 支持 Youtube 、Vimeo 外链和预览
 
+# 部署 
 
-You can access it through your local node or through a public IPFS gateway:
-https://ipfs.io/ipfs/QmbvveWddPW9ogjhPfByJybDAeE42eHna6a8bf6Qk2SF9B
+将public上传到任意环境即可。
 
-[Example post](https://ipfs.io/ipfs/QmRntMvqmhEH1YZDfEVeR8GS23XcL3hJpL2DEGP3NMeU7J/)
+# ipfs上传接口
 
-## Develop
-```
-git clone https://github.com/alexstep/ipfs-telegra.ph/ telegra.ph
-cd telegra.ph
+默认使用 localhost:5001 ，通过页面 location.hash 传递域名可以覆盖整个配置，例如 api.abc.com ,将会调用 api.abc.com/api/v0/add 上传数据。
 
-npm install
-npm start
-npm run deploy
-```
+# 样例
+
+cid：QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh
+
+[blockframe](https://ipfs.blockframe.io/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/#cdn.ipfsscan.io)
+
+[ipfs.io](https://ipfs.io/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/#cdn.ipfsscan.io)
+
+你也可以自己下载ipfs-desktop ，访问 http://127.0.0.1:8080/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/
 
 ## Thanks
  * https://github.com/silentcicero/ipfs-mini

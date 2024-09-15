@@ -12,9 +12,7 @@ var files = [
 	'./css/fonts.css',
 
 	'./js/autosize.min.js',
-	'./js/cachep2p.min.js',
 	'./js/core.js',
-	'./js/ipfs-mini.min.js',
 	'./js/jquery.min.js',
 	'./js/jquery.selection.min.js',
 	'./js/load-image.all.min.js',
