@@ -582,7 +582,7 @@ function getFigureValueByUrl(url) {
   // if (match = url.match(/^(https?):\/\/(www\.|mobile\.)?twitter\.com\/(.+)\/status\/(\d+)/i)) {
   //   return {embed: '/embed/twitter?url=' + encodeURIComponent(url)};
   // }
-  if (match = url.match(/^data:(image\/gif|image\/jpe?g|image\/png|video\/mp4);base64,(.*)$/)) {
+  if (match = url.match(/^data:(image\/gif|image\/jpe?g|image\/png|image\/webp|image\/jfif|video\/mp4);base64,(.*)$/)) {
     if (match[1].substr(0, 6) == 'video/') {
       return {video: url};
     }
@@ -591,7 +591,7 @@ function getFigureValueByUrl(url) {
   if (match = url.match(/^(https?):\/\/\S+/i)) {
     let anchor = document.createElement('a');
     anchor.href = url;
-    if (anchor.pathname.match(/\.(jpe?g|png|gif|mp4)$/i)) {
+    if (anchor.pathname.match(/\.(jpe?g|png|webp|jfif|gif|mp4)$/i)) {
       if (match[1] == 'mp4') {
         return {video: url};
       }
@@ -1773,7 +1773,7 @@ $image_button.click(function() {
   if (fileInput == null) {
     fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('accept', browser.safari_mobile ? 'image/gif, image/jpeg, image/jpg, image/png' : 'image/gif, image/jpeg, image/jpg, image/png, video/mp4');
+    fileInput.setAttribute('accept', 'image/gif, image/jpeg,image/webp, image/jfif,image/jpg, image/png, video/mp4');
     fileInput.classList.add('ql-image');
     fileInput.addEventListener('change', () => {
       if (fileInput.files != null && fileInput.files[0] != null) {
