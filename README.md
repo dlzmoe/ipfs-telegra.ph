@@ -23,15 +23,13 @@ ui克隆来自 [Telegra.ph](http://telegra.ph)
 
 # 样例
 
-cid：QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh
+cid：QmTCrcy5gE85cwqQf2UdcYpjMb7PrWKqBBcAuHoCwcGXZ6
 
-[blockframe](https://ipfs.blockframe.io/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/#cdn.ipfsscan.io)
+[blockframe](https://ipfs.blockframe.io/ipfs/QmTCrcy5gE85cwqQf2UdcYpjMb7PrWKqBBcAuHoCwcGXZ6/#cdn.ipfsscan.io)
 
-[ipfs.io](https://ipfs.io/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/#cdn.ipfsscan.io)
+[ipfs.io](https://ipfs.io/ipfs/QmTCrcy5gE85cwqQf2UdcYpjMb7PrWKqBBcAuHoCwcGXZ6/#cdn.ipfsscan.io)
 
-你也可以自己下载ipfs-desktop ，访问 http://127.0.0.1:8080/ipfs/QmTGMMJF18JAWkgPyZHi5Kb6dMwRgkcmzEx8e1TbaMcjJh/
+你也可以自己下载ipfs-desktop ，访问 http://127.0.0.1:8080/ipfs/QmTCrcy5gE85cwqQf2UdcYpjMb7PrWKqBBcAuHoCwcGXZ6/
 
 ## Thanks
- * https://github.com/silentcicero/ipfs-mini
  * http://telegra.ph
- * https://www.cachep2p.com
