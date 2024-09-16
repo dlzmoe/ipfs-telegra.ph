@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		window.ipfs_gateway = 'https://ipfs.io'
 	}
 
-	window.api_host = "localhost:5001"
+	window.api_host = "https://ipfs.zishu.me"
 
 	if(location.hash.length >= 4){
 		window.api_host = location.hash.split("#")[1]
